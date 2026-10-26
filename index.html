@@ -3,15 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wren Ashby — Photography</title>
-<meta name="description" content="Wren Ashby is a photographer working across studio portraiture, nature, outdoor portraits, and barbershop editorial work.">
+<title>Home</title>
+<meta name="description" content="Khai Mohd is a photographer working across studio portraits, events, gigs, and urban photography.">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Homepage-only styles. Move into style.css if you prefer. */
+  .home{ padding: 38px 40px 0 var(--gutter); }
+
+  .home-intro{
+    max-width: 880px;
+    padding: 0 0 36px;
+  }
+  .home-intro h1{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(30px, 4.4vw, 58px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+  }
+  .home-intro p{
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  /* Three panels: the main event. Hover/focus a panel and it widens. */
+  .panels{
+    display: flex;
+    gap: var(--gutter);
+    height: min(72vh, 680px);
+  }
+  .panel{
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    transition: flex-grow .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .panels:hover .panel,
+  .panels:focus-within .panel{ flex-grow: .8; }
+  .panels .panel:hover,
+  .panels .panel:focus-visible{ flex-grow: 1.7; }
+
+  .panel-img{
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    background: var(--paper-2);
+  }
+  .panel-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .panel-cap{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 12px;
+  }
+  .panel-cap h2{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .panel-cap span{
+    font-size: 13px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .panel:hover h2,
+  .panel:focus-visible h2{ color: var(--rust); }
+
+  /* Contact strip */
+  .home-contact{
+    margin-top: 64px;
+    padding: 28px 0 8px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px 40px;
+  }
+  .home-contact p{
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.25;
+    margin: 0;
+  }
+  .home-contact .links{
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+  }
+  .home-contact .links a{
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--ink-soft);
+  }
+  .home-contact .links a:hover{ color: var(--rust); text-decoration-color: var(--rust); }
+
+  @media (max-width: 900px){
+    .home{ padding: 26px var(--gutter) 0; }
+    .home-intro{ padding: 0 6px 26px; }
+    .panels{ flex-direction: column; height: auto; }
+    .panel,
+    .panels:hover .panel,
+    .panels .panel:hover{ flex: none; }
+    .panel-img{ flex: none; aspect-ratio: 1 / 1; }
+    /* Mobile crop: shift the focal point up so heads aren't cut off.
+       Override per panel with style="--focus: 50% 5%" on the <a class="panel">.
+       First value = left/right, second = top/bottom (0% = top edge). */
+    .panel-img img{ object-position: var(--focus, 30% 50%); }
+    .panel-cap{ padding: 10px 2px 14px; }
+    .home-contact{ margin-top: 36px; padding-left: 6px; padding-right: 6px; }
+  }
+</style>
 </head>
 <body>
 
 <!-- Mobile topbar -->
 <div class="topbar">
-  <div class="logo"><a href="index.html">WREN ASHBY</a></div>
+  <div class="logo"><a href="index.html">Khai Mohd</a></div>
   <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -23,24 +146,33 @@
   <aside class="sidebar">
     <div>
       <div class="logo">
-        <a href="index.html"><span class="line1">WREN</span><span class="line2">ASHBY</span></a>
+        <a href="index.html"><span class="line1">Khai</span><span class="line2">Mohd</span></a>
       </div>
       <nav class="nav" aria-label="Primary">
         <a href="studio.html">Studio</a>
-        <a href="nature.html">Nature</a>
-        <a href="outdoor.html">Outdoor</a>
-        <a href="barber.html">Barber</a>
-        <a href="about.html">About + Contact</a>
+        <a href="events.html">Events</a>
+        <a href="gigs.html">Gigs</a>
+        <a href="urban.html">Urban</a>
+        <a href="about.html">About</a>
       </nav>
     </div>
     <div class="sidebar-footer">
-      <div class="socials">
-        <a href="#" aria-label="Instagram">IG</a>
-        <a href="#" aria-label="Behance">BE</a>
-      </div>
-      <div class="contact-block">
-        <p>Contact:<br><a href="mailto:hello@wrenashby.com">hello@wrenashby.com</a></p>
-      </div>
+      <a class="email-btn" href="mailto:contact.khaiphoto@gmail.com" aria-label="Email Khai Mohd">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="m3 7 9 6 9-6"/>
+        </svg>
+        <span>Email</span>
+      </a>
+
+      <a class="insta-btn" href="https://instagram.com/KhairylMohd" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/>
+        </svg>
+        <span>Instagram</span>
+      </a>
     </div>
   </aside>
 
@@ -48,65 +180,96 @@
   <nav class="mobile-nav" aria-label="Mobile primary">
     <div class="nav">
       <a href="studio.html">Studio</a>
-      <a href="nature.html">Nature</a>
-      <a href="outdoor.html">Outdoor</a>
-      <a href="barber.html">Barber</a>
-      <a href="about.html">About + Contact</a>
+      <a href="events.html">Events</a>
+      <a href="gigs.html">Gigs</a>
+      <a href="urban.html">Urban</a>
+      <a href="about.html">About</a>
     </div>
     <div class="sidebar-footer">
-      <div class="socials">
-        <a href="#" aria-label="Instagram">IG</a>
-        <a href="#" aria-label="Behance">BE</a>
-      </div>
-      <div class="contact-block">
-        <p>Contact:<br><a href="mailto:hello@wrenashby.com">hello@wrenashby.com</a></p>
-      </div>
+      <a class="email-btn" href="mailto:contact.khaiphoto@gmail.com" aria-label="Email Khai Mohd">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="m3 7 9 6 9-6"/>
+        </svg>
+        <span>Email</span>
+      </a>
+
+      <a class="insta-btn" href="https://instagram.com/KhairylMohd" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/>
+        </svg>
+        <span>Instagram</span>
+      </a>
     </div>
   </nav>
 
   <main class="main">
-    <div class="gallery">
-      <a class="grid-item h2" href="studio.html">
-        <img src="https://picsum.photos/seed/wa-home1/600/900" alt="Studio portrait with soft directional light">
-        <span class="caption">Studio — Seated, Window Light</span>
-      </a>
-      <a class="grid-item h1" href="nature.html">
-        <img src="https://picsum.photos/seed/wa-home2/600/420" alt="Two portrait subjects, warm tone">
-        <span class="caption">Outdoor — Two Friends</span>
-      </a>
-      <a class="grid-item h2" href="outdoor.html">
-        <img src="https://picsum.photos/seed/wa-home4/600/900" alt="Portrait outdoors at golden hour">
-        <span class="caption">Outdoor — Golden Hour</span>
-      </a>
-      <a class="grid-item h1" href="barber.html">
-        <img src="https://picsum.photos/seed/wa-home3/600/420" alt="Barber finishing a fresh haircut">
-        <span class="caption">Barber — The Finish</span>
-      </a>
-      <a class="grid-item w2 h1" href="nature.html">
-        <img src="https://picsum.photos/seed/wa-home6/1200/420" alt="Mountain ridge at sunrise">
-        <span class="caption">Nature — Ridge Line</span>
-      </a>
-      <a class="grid-item h1" href="studio.html">
-        <img src="https://picsum.photos/seed/wa-home5/600/420" alt="Close studio portrait against seamless paper">
-        <span class="caption">Studio — Seamless, No. 2</span>
-      </a>
-      <a class="grid-item h1" href="barber.html">
-        <img src="https://picsum.photos/seed/wa-home7/600/420" alt="Detail shot of a fade haircut">
-        <span class="caption">Barber — Clean Fade</span>
-      </a>
-      <a class="grid-item h1" href="outdoor.html">
-        <img src="https://picsum.photos/seed/wa-home8/600/420" alt="Portrait walking through tall grass">
-        <span class="caption">Outdoor — Tall Grass</span>
-      </a>
-      <a class="grid-item h1" href="nature.html">
-        <img src="https://picsum.photos/seed/wa-home9/600/420" alt="Forest canopy from below">
-        <span class="caption">Nature — Canopy</span>
-      </a>
+    <div class="home">
+
+      <div class="home-intro">
+        <h1>Photography by Khai Mohd.</h1>
+        <p>I shoot a bit of every genre and love trying out new things.</p>
+        <p>Here's some of what I've shot so far:</p>
+      </div>
+
+      <!-- Swap the cover images below for whichever frame best represents each series -->
+      <div class="panels">
+        <a class="panel" href="studio.html">
+          <div class="panel-img">
+            <img src="images/studPreviews/DSCF2177.jpg" alt="Studio portrait, cover of the Studio series">
+          </div>
+          <div class="panel-cap">
+            <h2>Studio</h2>
+            <span>Portraits in controlled light</span>
+          </div>
+        </a>
+
+        <a class="panel" href="events.html">
+          <div class="panel-img">
+            <img src="images/y2kPreviews/DSCF1052.jpg" alt="Event photograph, cover of the Events series">
+          </div>
+          <div class="panel-cap">
+            <h2>Events</h2>
+            <span>People and moments as they happen</span>
+          </div>
+        </a>
+
+        <a class="panel" href="gigs.html">
+          <div class="panel-img">
+            <img src="images/gigsPreviews/DSCF1461.jpg" alt="Gig photograph, cover of the Gigs series">
+          </div>
+          <div class="panel-cap">
+            <h2>Gigs</h2>
+            <span>Out on location, in whatever light there is</span>
+          </div>
+        </a>
+
+        <a class="panel" href="urban.html">
+          <div class="panel-img">
+            <img src="images/urbanPreviews/DSCF0419.jpg" alt="Urban photograph, cover of the Urban series">
+          </div>
+          <div class="panel-cap">
+            <h2>Urban</h2>
+            <span>Streets, style and city life</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="home-contact">
+        <p>Have a shoot in mind?</p>
+        <div class="links">
+          <a href="mailto:contact.khaiphoto@gmail.com">Email</a>
+          <a href="https://instagram.com/KhairylMohd" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="about.html">About</a>
+        </div>
+      </div>
+
     </div>
 
     <footer class="site-footer">
-      <span>© 2026 Wren Ashby</span>
-      <a href="about.html">About + Contact</a>
+      <span>© 2026 Khai Mohd</span>
     </footer>
   </main>
 </div>
