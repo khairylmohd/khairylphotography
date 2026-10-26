@@ -478,8 +478,9 @@ body.lightbox-open{ overflow: hidden; }
   max-height: 84vh;
   box-shadow: 0 24px 70px rgba(0,0,0,0.4);
   transform: scale(0.97);
-  transition: transform .3s ease;
+  transition: transform .3s ease, opacity .2s ease;
 }
+.lightbox-frame.is-loading{ opacity: 0; }
 .lightbox-overlay.is-open .lightbox-frame{ transform: scale(1); }
 
 .lightbox-stage{

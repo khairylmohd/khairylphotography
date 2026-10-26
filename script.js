@@ -255,11 +255,34 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------- open / close / navigate ---------- */
+  var frame = overlay.querySelector('.lightbox-frame');
+  var loadToken = 0;
+
+  function preload(index) {
+    var i = (index + images.length) % images.length;
+    new Image().src = images[i].src;
+  }
+
+  // Hide the frame, load the new image off-screen, and only swap it in
+  // once it's ready, so the previous photo never flashes up.
   function showImage(index) {
     currentIndex = (index + images.length) % images.length;
     resetZoom();
-    frameImg.setAttribute('src', images[currentIndex].src);
-    frameImg.setAttribute('alt', images[currentIndex].alt);
+
+    var data = images[currentIndex];
+    var token = ++loadToken;          // ignore results from older, superseded loads
+    frame.classList.add('is-loading');
+
+    var loader = new Image();
+    loader.onload = loader.onerror = function () {
+      if (token !== loadToken) return;
+      frameImg.setAttribute('src', data.src);
+      frameImg.setAttribute('alt', data.alt);
+      frame.classList.remove('is-loading');
+      preload(currentIndex + 1);
+      preload(currentIndex - 1);
+    };
+    loader.src = data.src;
   }
 
   function openLightbox(index) {
