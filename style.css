@@ -210,6 +210,9 @@ a{ color: inherit; text-decoration: none; }
   overflow: hidden;
   background: var(--paper-2);
   min-width: 0;
+  -webkit-tap-highlight-color: transparent;  /* removes the blue/grey flash on touch */
+  -webkit-user-select: none;
+  user-select: none;                         /* stops long-press selecting the image */
 }
 
 .grid-item img {
